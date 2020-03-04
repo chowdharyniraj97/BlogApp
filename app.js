@@ -20,12 +20,19 @@ var blogSchema=new mongoose.Schema({
 var Blog=mongoose.model("Blog",blogSchema);
 
 app.get("/blogs",function(req,res){
-    res.render("index");
+    Blog.find({},function(err,blogs){
+        if(err)
+        console.log("error");
+        else
+        res.render("index",{blogs:blogs});
+    });
 });
 
 app.get("/",function(req,res){
-    res.send("welcome");
+    res.redirect("/blogs");
 });
+
+
 
 app.listen(3000,()=>{
     console.log("server is running");
