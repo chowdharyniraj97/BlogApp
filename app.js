@@ -28,10 +28,29 @@ app.get("/blogs",function(req,res){
     });
 });
 
-app.get("/",function(req,res){
+app.post("/blogs",function(req,res){
+    console.log(req);
+    // var a=req.body.title;
+    // var b=req.body.image;
+    // var c=req.body.body;
+    // var newBlog={title: a,image: b, body: c};
+  Blog.create(req.body.blog,function(err,_clexyz){
+        if(err)
+        res.render("new");
+        else{
+            res.redirect("/blogs");
+        }
+    });
+
+});
+
+app.get("/",function(_req,res){
     res.redirect("/blogs");
 });
 
+app.get("/blogs/new",function(_req,res){
+    res.render("new");
+})
 
 
 app.listen(3000,()=>{
