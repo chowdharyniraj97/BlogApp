@@ -53,7 +53,7 @@ app.get("/blogs/new",function(_req,res){
 })
 
 app.get("/blogs/show/:id",function(req,res){
-    Blog.findById(req.param.id,function(err,specificblog){
+    Blog.findById(req.params.id,function(err,specificblog){
     if(err)
         res.redirect("/blogs");
     else{
